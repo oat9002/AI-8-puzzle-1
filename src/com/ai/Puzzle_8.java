@@ -15,6 +15,25 @@ public class Puzzle_8 {
         initialTable(table);
     }
 
+    public Puzzle_8(int[][] input) {
+        table = new int[3][3];
+        empTile = new int[2];
+        for(int i = 0; i < 3;i++) {
+            for (int j = 0; j < 3; j++) {
+                table[i][j] = input[i][j];
+            }
+        }
+        for(int i = 0; i < 3;i++) {
+            for (int j = 0; j < 3; j++) {
+                if(table[i][j] == 0) {
+                    empTile[0] = i;
+                    empTile[1] = j;
+                    break;
+                }
+            }
+        }
+    }
+
     public void initialTable(int[][] table) {
         int count = 1;
         empTile[0] = 2;
@@ -33,7 +52,6 @@ public class Puzzle_8 {
     public void shuffleTable(int times) {
         Random randomizer = new Random();
         while(times > 0){
-            printTable();
             int direction = randomizer.nextInt(4);
             switch (direction){
                 case 0:
