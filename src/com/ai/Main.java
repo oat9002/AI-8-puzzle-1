@@ -3,6 +3,8 @@ package com.ai;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code here
+        Puzzle_8 puzzle_8 = new Puzzle_8();
+        puzzle_8.shuffleTable(50);
+        puzzle_8.printTable();
     }
 }
