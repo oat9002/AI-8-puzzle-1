@@ -8,15 +8,11 @@ import java.util.Random;
 public class Puzzle_8 {
     private int[][] table;
     private int empTile[];
-    private int[][] goal;
-
+   
     public Puzzle_8() {
         table = new int[3][3];
         empTile = new int[2];
         initialTable(table);
-        goal = new int[][]{{1, 2, 3},
-                           {4, 5, 6},
-                           {7, 8, 0}};
     }
 
     public Puzzle_8(int[][] input) {
@@ -152,4 +148,8 @@ public class Puzzle_8 {
         }
         System.out.println("----------");
     }
+  
+  public int[][] getTable() {
+    return table;
+  }
 }
