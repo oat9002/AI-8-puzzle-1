@@ -1,4 +1,4 @@
-package com.ai;
+//package com.ai;
 
 import java.util.Random;
 
@@ -8,11 +8,15 @@ import java.util.Random;
 public class Puzzle_8 {
     private int[][] table;
     private int empTile[];
+    private int[][] goal;
 
     public Puzzle_8() {
         table = new int[3][3];
         empTile = new int[2];
         initialTable(table);
+        goal = new int[][]{{1, 2, 3},
+                           {4, 5, 6},
+                           {7, 8, 0}};
     }
 
     public Puzzle_8(int[][] input) {
@@ -34,7 +38,7 @@ public class Puzzle_8 {
         }
     }
 
-    public void initialTable(int[][] table) {
+    private void initialTable(int[][] table) {
         int count = 1;
         empTile[0] = 2;
         empTile[1] = 2;
@@ -71,7 +75,7 @@ public class Puzzle_8 {
         }
     }
 
-    public boolean canSlide(char direction){
+    private boolean canSlide(char direction){
         boolean slideable = true;
 
         switch(direction) {
@@ -94,7 +98,7 @@ public class Puzzle_8 {
     }
 
     // u d l r
-    public boolean slide(char direction){
+    private boolean slide(char direction){
         int[] tempTile = new int[2];
         if(!canSlide(direction)) {
             return false;
