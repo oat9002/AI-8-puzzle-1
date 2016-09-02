@@ -1,4 +1,4 @@
-// package com.ai;
+ package com.ai;
 
 import java.util.Scanner;
 
@@ -26,9 +26,20 @@ public class Main {
       puzzle_8.printTable();
       Node rootNode = new Node(puzzle_8);
       IDS_Search idsSearch = new IDS_Search();
-      Node goal = idsSearch.search(rootNode, 40);
-      if(goal != null){
+      Node answer = idsSearch.search(rootNode, 40);
+      if(answer != null){
         System.out.println("SUCCESS!!");
+          Node temp = answer;
+          int times = 0;
+          System.out.println(times+":");
+          temp.getData().printTable();
+
+          while(temp.getNextNode()!=null){
+              times++;
+              System.out.println(times+":");
+              temp.getNextNode().getData().printTable();
+              temp = temp.getNextNode();
+          }
       }
       else{
         System.out.println("DEFEAT!!");

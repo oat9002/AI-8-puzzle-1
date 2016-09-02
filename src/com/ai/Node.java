@@ -1,6 +1,7 @@
+package com.ai;
 public class Node {
   private Puzzle_8 data;
-  private Node previousNode;
+  private Node nextNode;
   private Node slideUp;
   private Node slideDown;
   private Node slideLeft;
@@ -8,7 +9,7 @@ public class Node {
   
   public Node() {
     data = null;
-    previousNode = null;
+    nextNode = null;
     slideUp = null;
     slideDown = null;
     slideLeft = null;
@@ -17,7 +18,7 @@ public class Node {
   
   public Node(Puzzle_8 data) {
     this.data = data;
-    previousNode = null;
+    nextNode = null;
     slideUp = null;
     slideDown = null;
     slideLeft = null;
@@ -28,12 +29,12 @@ public class Node {
     this.data = data;
   }
   
-  public Node getPreviousNode() {
-    return previousNode;
+  public Node getNextNode() {
+    return nextNode;
   }
   
-  public void setPreviousNode(Node previousNode) {
-    this.previousNode = previousNode;
+  public void setNextNode(Node nextNode) {
+    this.nextNode = nextNode;
   }
   
   public void setSlideUp(Node slideUp) {

@@ -1,3 +1,4 @@
+package com.ai;
 import java.util.Arrays;
 
 public class IDS_Search {
@@ -12,48 +13,51 @@ public class IDS_Search {
   }
   
    
-  public Node search(Node rootNode, int maxDepth) {
-    Node goal;
+  public Node search(Node challenge, int maxDepth) {
+    Node rootNode = new Node(challenge.getData());
     for(int depth = 0; depth < maxDepth; depth++) {
-      goal = depthLimitSearch(rootNode, depth, 0);
-      if(goal != null) {    
+      System.out.println("Searching Depth "+depth +"...");
+      if(depthLimitSearch(rootNode, depth, 0)) {
         //succeed
-        return goal;
+        return rootNode;
       }
-      System.out.println("depth: " + depth);
     }
     //failure
     return null;
   }
   
-  private Node depthLimitSearch(Node currentNode, int maxDepth, int currentDepth) {
+  private boolean depthLimitSearch(Node currentNode, int maxDepth, int currentDepth) {
     
     if(currentNode != null){     
-      currentNode.getData().printTable();
+      //currentNode.getData().printTable();
       if(isGoal(currentNode)) {
-        return currentNode;
+        return true;
       }
       else if(maxDepth == currentDepth) {                                                                                                               
-        return null;
+        return false;
       }
       else {
         expandNode(currentNode);
-        if(depthLimitSearch(currentNode.getSlideUp(), maxDepth, currentDepth + 1)!=null){
-           return currentNode.getSlideUp();
+        if(depthLimitSearch(currentNode.getSlideUp(), maxDepth, currentDepth + 1)){
+          currentNode.setNextNode(currentNode.getSlideUp());
+          return true;
         }
-        if(depthLimitSearch(currentNode.getSlideDown(), maxDepth, currentDepth + 1)!=null){
-           return currentNode.getSlideDown();
+        if(depthLimitSearch(currentNode.getSlideDown(), maxDepth, currentDepth + 1)){
+          currentNode.setNextNode(currentNode.getSlideDown());
+          return true;
         }
-        if(depthLimitSearch(currentNode.getSlideLeft(), maxDepth, currentDepth + 1)!=null){
-           return currentNode.getSlideLeft();
+        if(depthLimitSearch(currentNode.getSlideLeft(), maxDepth, currentDepth + 1)){
+          currentNode.setNextNode(currentNode.getSlideLeft());
+          return true;
         }
-        if(depthLimitSearch(currentNode.getSlideRight(), maxDepth, currentDepth + 1)!=null){
-           return currentNode.getSlideRight();
+        if(depthLimitSearch(currentNode.getSlideRight(), maxDepth, currentDepth + 1)){
+          currentNode.setNextNode(currentNode.getSlideRight());
+          return true;
         }
         currentNode.freeAllChild();
       }   
     }
-    return null;
+    return false;
   }
   
   private void expandNode(Node currentNode) {
@@ -61,34 +65,30 @@ public class IDS_Search {
       Puzzle_8 newTable = new Puzzle_8(currentNode.getData().getTable());
       newTable.slide('u');
       Node newNode = new Node(newTable);
-      newNode.setPreviousNode(currentNode);
       currentNode.setSlideUp(newNode);
     }
     if(currentNode.getData().canSlide('d')) {
       Puzzle_8 newTable = new Puzzle_8(currentNode.getData().getTable());
       newTable.slide('d');
       Node newNode = new Node(newTable);
-      newNode.setPreviousNode(currentNode);
-      currentNode.setSlideUp(newNode);
+      currentNode.setSlideDown(newNode);
     }
     if(currentNode.getData().canSlide('l')) {
       Puzzle_8 newTable = new Puzzle_8(currentNode.getData().getTable());
       newTable.slide('l');
       Node newNode = new Node(newTable);
-      newNode.setPreviousNode(currentNode);
-      currentNode.setSlideUp(newNode);
+      currentNode.setSlideLeft(newNode);
     }
     if(currentNode.getData().canSlide('r')) {
       Puzzle_8 newTable = new Puzzle_8(currentNode.getData().getTable());
       newTable.slide('r');
       Node newNode = new Node(newTable);
-      newNode.setPreviousNode(currentNode);
-      currentNode.setSlideUp(newNode);
+      currentNode.setSlideRight(newNode);
     }
   }
   
   private boolean isGoal(Node currentNode) {
-    if(Arrays.equals(currentNode.getData().getTable(), goal)) {
+    if(Arrays.deepEquals(currentNode.getData().getTable(), goal)) {
       return true;
     }
     else {
