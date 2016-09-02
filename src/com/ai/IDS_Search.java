@@ -20,6 +20,7 @@ public class IDS_Search {
         //succeed
         return goal;
       }
+      System.out.println("depth: " + depth);
     }
     //failure
     return null;
@@ -27,7 +28,8 @@ public class IDS_Search {
   
   private Node depthLimitSearch(Node currentNode, int maxDepth, int currentDepth) {
     
-    if(currentNode != null){        
+    if(currentNode != null){     
+      currentNode.getData().printTable();
       if(isGoal(currentNode)) {
         return currentNode;
       }
@@ -48,6 +50,7 @@ public class IDS_Search {
         if(depthLimitSearch(currentNode.getSlideRight(), maxDepth, currentDepth + 1)!=null){
            return currentNode.getSlideRight();
         }
+        currentNode.freeAllChild();
       }   
     }
     return null;
