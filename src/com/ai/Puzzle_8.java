@@ -71,6 +71,7 @@ public class Puzzle_8 {
         }
     }
 
+  //check if table can slide
     public boolean canSlide(char direction){
         boolean slideable = true;
 
@@ -94,12 +95,9 @@ public class Puzzle_8 {
     }
 
     // u d l r
-    private boolean slide(char direction){
+    public void slide(char direction){
         int[] tempTile = new int[2];
-        if(!canSlide(direction)) {
-            return false;
-        }
-        else{
+        if(canSlide(direction)) {
             switch(direction) {
                 case ('u'):
                     tempTile[0] = empTile[0];
@@ -122,7 +120,6 @@ public class Puzzle_8 {
             }
             swap(tempTile);
         }
-        return true;
     }
 
     private void swap(int[] tile){

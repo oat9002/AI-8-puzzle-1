@@ -23,46 +23,56 @@ public class IDS_Search {
     return null;
   }
   
-  private Tree depthLimitSearch(Tree subTree, int maxDepth, int currentDepth) {
+  private Node depthLimitSearch(Tree subTree, int maxDepth, int currentDepth) {
     Node currentNode = subTree.getCurrentNode();
     
     if(currentNode != null){        
       if(isGoal(currentNode)) {
-        return Tree;
+        return Node;
       }
       else if(maxDepth == currentDepth) {                                                                                                               
         return null;
       }
       else {
-        
+        expandTree(subTree);
         depthLimitSearch(limitedTree.getCurrentNode().getSlideUp(), maxDepth, currentDepth + 1);
         depthLimitSearch(limitedTree.getCurrentNode().getSlideDown(), maxDepth, currentDepth + 1);
         depthLimitSearch(limitedTree.getCurrentNode().getSlideLeft(), maxDepth, currentDepth + 1);
         depthLimitSearch(limitedTree.getCurrentNode().getSlideRight(), maxDepth, currentDepth + 1);
-      }
-      
+      }   
     }
   }
   
   private void expandTree(Tree subTree) {
-    
+    Node currentNode = subTree.getCurrentNode();
     if(subTree.canSlide('u')) {
       Puzzle_8 newTable = new Puzzle_8(subTree.getTable());
-      currentNode.setSlideUp(newTable.slide('u') == true ? newTable.getData() : null);
+      newTable.slide('u');
+      Node newNode = new Node(newTable);
+      newNode.setPreviousNode(currentNode);
+      currentNode.setSlideUp(newNode);
     }
     if(subTree.canSlide('d')) {
       Puzzle_8 newTable = new Puzzle_8(subTree.getTable());
-      currentNode.setSlideUp(newTable.slide('d') == true ? newTable.getData() : null);
+      newTable.slide('d');
+      Node newNode = new Node(newTable);
+      newNode.setPreviousNode(currentNode);
+      currentNode.setSlideUp(newNode);
     }
     if(subTree.canSlide('l')) {
       Puzzle_8 newTable = new Puzzle_8(subTree.getTable());
-      currentNode.setSlideUp(newTable.slide('l') == true ? newTable.getData() : null);
+      newTable.slide('l');
+      Node newNode = new Node(newTable);
+      newNode.setPreviousNode(currentNode);
+      currentNode.setSlideUp(newNode);
     }
     if(subTree.canSlide('r')) {
       Puzzle_8 newTable = new Puzzle_8(subTree.getTable());
-      currentNode.setSlideUp(newTable.slide('r') == true ? newTable.getData() : null);
+      newTable.slide('r');
+      Node newNode = new Node(newTable);
+      newNode.setPreviousNode(currentNode);
+      currentNode.setSlideUp(newNode);
     }
-    
   }
   
   private boolean isGoal(Node currentNode) {

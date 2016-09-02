@@ -7,7 +7,7 @@ public class Tree {
     this.currentNode = rootNode;
   }
   
-  public void expand(Node slideUp,Node slideDown,Node slideLeft,Node slideRight) {
+  public void setAllChild(Node slideUp,Node slideDown,Node slideLeft,Node slideRight) {
     currentNode.setSlideUp(slideUp);
     currentNode.setSlideDown(slideDown);
     currentNode.setSlideLeft(slideLeft);
