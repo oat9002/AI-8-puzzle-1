@@ -71,7 +71,7 @@ public class Puzzle_8 {
         }
     }
 
-    private boolean canSlide(char direction){
+    public boolean canSlide(char direction){
         boolean slideable = true;
 
         switch(direction) {

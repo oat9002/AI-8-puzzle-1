@@ -21,4 +21,19 @@ public class Tree {
     currentNode.setSlideRight(null);
   }
  
+  public Node getRootNode() {
+    return rootNode;
+  }
+  
+  public Node getCurrentNode() {
+    return currentNode;
+  }
+     
+  public void setRootNode(Node rootNode) {
+    this.rootNode = rootNode;
+  }
+  
+  public void setCurrentNode(Node currentNode) {
+    this.currentNode = currentNode;
+  }
 }
