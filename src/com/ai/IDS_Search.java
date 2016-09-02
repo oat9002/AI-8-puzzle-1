@@ -5,21 +5,23 @@ public class IDS_Search {
                                      {4, 5, 6},
                                      {7, 8, 0}};
   
-  public IDS_Search(int[][] table) {
-    
-    
+  public IDS_Search() {}
+  
+  public IDS_Search(int[][] goal) {
+    this.goal = goal;
   }
+  
    
-  public Node search(Node currentNode, int maxDepth) {
-    
+  public Node search(Node rootNode, int maxDepth) {
+    Node goal;
     for(int depth = 0; depth < maxDepth; depth++) {
-      if(!isGoal(currentNode)) {    
-        //failure
-      } else {
-
+      goal = depthLimitSearch(rootNode, depth, 0);
+      if(goal != null) {    
         //succeed
-      }         
+        return goal;
+      }
     }
+    //failure
     return null;
   }
   
@@ -34,10 +36,18 @@ public class IDS_Search {
       }
       else {
         expandNode(currentNode);
-        depthLimitSearch(currentNode.getSlideUp(), maxDepth, currentDepth + 1);
-        depthLimitSearch(currentNode.getSlideDown(), maxDepth, currentDepth + 1);
-        depthLimitSearch(currentNode.getSlideLeft(), maxDepth, currentDepth + 1);
-        depthLimitSearch(currentNode.getSlideRight(), maxDepth, currentDepth + 1);
+        if(depthLimitSearch(currentNode.getSlideUp(), maxDepth, currentDepth + 1)!=null){
+           return currentNode.getSlideUp();
+        }
+        if(depthLimitSearch(currentNode.getSlideDown(), maxDepth, currentDepth + 1)!=null){
+           return currentNode.getSlideDown();
+        }
+        if(depthLimitSearch(currentNode.getSlideLeft(), maxDepth, currentDepth + 1)!=null){
+           return currentNode.getSlideLeft();
+        }
+        if(depthLimitSearch(currentNode.getSlideRight(), maxDepth, currentDepth + 1)!=null){
+           return currentNode.getSlideRight();
+        }
       }   
     }
     return null;
