@@ -12,7 +12,7 @@ public class Node {
     slideUp = null;
     slideDown = null;
     slideLeft = null;
-    slideRight - null;
+    slideRight = null;
   }
   
   public Node(Puzzle_8 data) {
@@ -29,7 +29,7 @@ public class Node {
   }
   
   public Node getPreviousNode() {
-    return previousNode
+    return previousNode;
   }
   
   public void setPreviousNode(Node previousNode) {
@@ -70,6 +70,20 @@ public class Node {
   
   public Node getSlideRight() {
     return slideRight;
+  }
+  
+  public void setAllChild(Node slideUp,Node slideDown,Node slideLeft,Node slideRight) {
+    setSlideUp(slideUp);
+    setSlideDown(slideDown);
+    setSlideLeft(slideLeft);
+    setSlideRight(slideRight);
+  }
+  
+  public void freeAllChild() {
+    setSlideUp(null);
+    setSlideDown(null);
+    setSlideLeft(null);
+    setSlideRight(null);
   }
   
 }

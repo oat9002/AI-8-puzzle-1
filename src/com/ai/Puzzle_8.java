@@ -55,16 +55,28 @@ public class Puzzle_8 {
             int direction = randomizer.nextInt(4);
             switch (direction){
                 case 0:
-                    if(slide('u')) times--;
+                    if(canSlide('u')){
+                      slide('u');
+                      times--;
+                    }
                     break;
                 case 1:
-                    if(slide('d')) times--;
+                    if(canSlide('d')){
+                      slide('d');
+                      times--;
+                    }
                     break;
                 case 2:
-                    if(slide('l')) times--;
+                    if(canSlide('l')){
+                      slide('l');
+                      times--;
+                    }
                     break;
                 case 3:
-                    if(slide('r')) times--;
+                    if(canSlide('r')){
+                      slide('r');
+                      times--;
+                    }
                     break;
                 default: System.out.print("ERROR!!!!!! OAT NOOB GG");
             }
