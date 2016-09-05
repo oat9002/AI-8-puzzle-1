@@ -161,4 +161,14 @@ public class Puzzle_8 {
   public int[][] getTable() {
     return table;
   }
+
+  public String getSequence(){
+      String sequence = "";
+      for(int i=0;i<3;i++){
+          for(int j=0;j<3;j++){
+              sequence += table[i][j];
+          }
+      }
+      return sequence;
+  }
 }
