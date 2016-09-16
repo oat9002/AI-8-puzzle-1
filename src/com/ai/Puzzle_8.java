@@ -1,4 +1,4 @@
-package com.ai;
+//package com.ai;
 
 import java.util.Random;
 
@@ -162,5 +162,19 @@ public class Puzzle_8 {
             }
         }
         return sequence;
+    }
+  
+    public int[] getIndexOf(int num) {
+      int[] index = {-1, -1};
+      for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+          if(table[i][j] == num){
+            index[0] = i;
+            index[1] = j;
+            break;
+          }
+        }
+      }
+      return index;
     }
 }

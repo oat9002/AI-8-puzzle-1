@@ -1,4 +1,4 @@
-package com.ai;
+//package com.ai;
 
 public class Node {
     private Puzzle_8 data = null;
@@ -7,6 +7,7 @@ public class Node {
     private Node slideDown = null;
     private Node slideLeft = null;
     private Node slideRight = null;
+    private int costToGoal = -1;
 
     public Node() {
     }
@@ -61,6 +62,14 @@ public class Node {
 
     public Node getSlideRight() {
         return slideRight;
+    }
+  
+    public int getCostToGoal() {
+      return costToGoal;
+    }
+  
+    public void setCosttoGoal(int costToGoal) {
+      this.costToGoal = costToGoal;
     }
 
     public void setAllChild(Node slideUp, Node slideDown, Node slideLeft, Node slideRight) {
