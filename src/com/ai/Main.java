@@ -28,24 +28,27 @@ public class Main {
         start = Calendar.getInstance().getTimeInMillis();
         puzzle_8.printTable();
         Node rootNode = new Node(puzzle_8);
-        IDS_Search idsSearch = new IDS_Search();
-        Node answer = idsSearch.search(rootNode, 40);
-        if (answer != null) {
-            System.out.println("MISSION COMPLETE");
-            Node temp = answer;
-            int times = 0;
-            System.out.println("MOVE: " + times);
-            temp.getData().printTable();
+        A_Star_Search aStarSearch = new A_Star_Search();
+        System.out.println(aStarSearch.aStarSearch(rootNode));
+      
+//         IDS_Search idsSearch = new IDS_Search();
+//         Node answer = idsSearch.search(rootNode, 40);
+//         if (answer != null) {
+//             System.out.println("MISSION COMPLETE");
+//             Node temp = answer;
+//             int times = 0;
+//             System.out.println("MOVE: " + times);
+//             temp.getData().printTable();
 
-            while (temp.getNextNode() != null) {
-                times++;
-                System.out.println("MOVE: " + times);
-                temp.getNextNode().getData().printTable();
-                temp = temp.getNextNode();
-            }
-        } else {
-            System.out.println("DEFEAT!!");
-        }
+//             while (temp.getNextNode() != null) {
+//                 times++;
+//                 System.out.println("MOVE: " + times);
+//                 temp.getNextNode().getData().printTable();
+//                 temp = temp.getNextNode();
+//             }
+//         } else {
+//             System.out.println("DEFEAT!!");
+//         }
         System.out.println("Time elapse: " + (Calendar.getInstance().getTimeInMillis() - start) + " ms");
     }
 }

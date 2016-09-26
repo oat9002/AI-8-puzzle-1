@@ -4,6 +4,6 @@ public class CostComparator implements Comparator<Node> {
   
    @Override
    public int compare(Node t1, Node t2) {
-    return t1.getCostToGoal() - t2.getCostToGoal();
+      return t1.getCostToGoal() - t2.getCostToGoal();
    }
 }

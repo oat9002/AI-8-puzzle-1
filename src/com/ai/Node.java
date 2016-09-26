@@ -2,13 +2,15 @@
 
 public class Node {
     private Puzzle_8 data = null;
+    private Node previousNode = null;
     private Node nextNode = null;
     private Node slideUp = null;
     private Node slideDown = null;
     private Node slideLeft = null;
     private Node slideRight = null;
     private int costToGoal = -1;
-
+    private int depth = 0;
+  
     public Node() {
     }
 
@@ -16,10 +18,23 @@ public class Node {
         this.data = data;
     }
 
+    public Node(Puzzle_8 data, int depth){
+      this.data = data;
+      this.depth = depth;
+    }
+  
     public void setData(Puzzle_8 data) {
         this.data = data;
     }
 
+    public Node getPreviousNode() {
+        return nextNode;
+    }
+
+    public void setPreviousNode(Node previousNode) {
+        this.previousNode = previousNode;
+    }
+  
     public Node getNextNode() {
         return nextNode;
     }
@@ -68,10 +83,18 @@ public class Node {
       return costToGoal;
     }
   
-    public void setCosttoGoal(int costToGoal) {
+    public void setCostToGoal(int costToGoal) {
       this.costToGoal = costToGoal;
     }
+  
+    public int getDepth() {
+      return depth;
+    }
 
+    public void setDepth(int depth) {
+      this.depth = depth;
+    }
+  
     public void setAllChild(Node slideUp, Node slideDown, Node slideLeft, Node slideRight) {
         setSlideUp(slideUp);
         setSlideDown(slideDown);
