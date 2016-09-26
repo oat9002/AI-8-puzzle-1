@@ -1,4 +1,4 @@
-//package com.ai;
+package com.ai;
 
 import java.util.Calendar;
 import java.util.Scanner;
@@ -29,7 +29,9 @@ public class Main {
         puzzle_8.printTable();
         Node rootNode = new Node(puzzle_8);
         A_Star_Search aStarSearch = new A_Star_Search();
-        System.out.println(aStarSearch.aStarSearch(rootNode));
+        System.out.println("\n----START----");
+        aStarSearch.search(rootNode);
+//        System.out.println(aStarSearch.aStarSearch(rootNode));
       
 //         IDS_Search idsSearch = new IDS_Search();
 //         Node answer = idsSearch.search(rootNode, 40);

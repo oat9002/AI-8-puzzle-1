@@ -1,4 +1,4 @@
-//package com.ai;
+package com.ai;
 
 public class Node {
     private Puzzle_8 data = null;
@@ -28,7 +28,7 @@ public class Node {
     }
 
     public Node getPreviousNode() {
-        return nextNode;
+        return previousNode;
     }
 
     public void setPreviousNode(Node previousNode) {

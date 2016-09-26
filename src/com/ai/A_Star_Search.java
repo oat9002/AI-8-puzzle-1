@@ -1,5 +1,6 @@
-//package com.ai;
+package com.ai;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.PriorityQueue;
 
@@ -61,20 +62,35 @@ public class A_Star_Search {
     return cost;
   }
   
-  public Node search(Node challenge) {
-    return null;
+  public void search(Node challenge) {
+      Node goal = aStarSearch(challenge);
+      ArrayList<Node> arrNode = new ArrayList<>();
+      while(goal != null) {
+          arrNode.add(goal);
+          goal = goal.getPreviousNode();
+      }
+      for(int i = arrNode.size() - 1; i >= 0;i--) {
+          System.out.println("Time: " + (arrNode.size() - i - 1));
+          arrNode.get(i).getData().printTable();
+          System.out.println();
+      }
   }
   
-  public boolean aStarSearch(Node rootNode) {
+  private Node aStarSearch(Node rootNode) {
     CostComparator comparator = new CostComparator();
     PriorityQueue<Node> queue = new PriorityQueue<Node>(100, comparator);
     queue.add(rootNode);
+      int depth = 0;
     while(!queue.isEmpty()){
       Node currentNode =  queue.poll();      
       if (isGoal(currentNode)) {
-        return true;
-      } 
+        return currentNode;
+      }
       else {
+          if(currentNode.getDepth() > depth){
+              System.out.println("The deepest depth: " + depth + "...");
+              depth = currentNode.getDepth();
+          }
         expandNode(currentNode);
         if(currentNode.getSlideUp() != null) {
           queue.add(currentNode.getSlideUp());
@@ -90,7 +106,7 @@ public class A_Star_Search {
         }
       }     
     }
-    return false;
+    return null;
   }
   
   private void expandNode(Node currentNode) {
@@ -98,7 +114,7 @@ public class A_Star_Search {
             Puzzle_8 newTable = new Puzzle_8(currentNode.getData().getTable());
             newTable.slide('u');
             Node newNode = new Node(newTable, currentNode.getDepth() + 1);
-            newNode.setCostToGoal(countWrongTile(newNode));
+            newNode.setCostToGoal(computeCost(newNode));
             newNode.setPreviousNode(currentNode);
             currentNode.setSlideUp(newNode);
         }
@@ -106,7 +122,7 @@ public class A_Star_Search {
             Puzzle_8 newTable = new Puzzle_8(currentNode.getData().getTable());
             newTable.slide('d');
              Node newNode = new Node(newTable, currentNode.getDepth() + 1);
-            newNode.setCostToGoal(countWrongTile(newNode));
+            newNode.setCostToGoal(computeCost(newNode));
             newNode.setPreviousNode(currentNode);
             currentNode.setSlideDown(newNode);
         }
@@ -114,7 +130,7 @@ public class A_Star_Search {
             Puzzle_8 newTable = new Puzzle_8(currentNode.getData().getTable());
             newTable.slide('l');
             Node newNode = new Node(newTable, currentNode.getDepth() + 1);
-            newNode.setCostToGoal(countWrongTile(newNode));
+            newNode.setCostToGoal(computeCost(newNode));
             newNode.setPreviousNode(currentNode);
             currentNode.setSlideLeft(newNode);
         }
@@ -122,7 +138,7 @@ public class A_Star_Search {
             Puzzle_8 newTable = new Puzzle_8(currentNode.getData().getTable());
             newTable.slide('r');
             Node newNode = new Node(newTable, currentNode.getDepth() + 1);
-            newNode.setCostToGoal(countWrongTile(newNode));
+            newNode.setCostToGoal(computeCost(newNode));
             newNode.setPreviousNode(currentNode);
             currentNode.setSlideRight(newNode);
         }
